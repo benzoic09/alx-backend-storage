@@ -1,17 +1,17 @@
 -- SQL script to create a stored procedure ComputeAverageWeightedScoreForUser
 DELIMITER $$
 
-CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
+DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUser;
+CREATE PROCEDURE ComputeAverageWeightedScoreForUser (IN user_id INT)
 BEGIN
-    DECLARE avg_weighted_score DECIMAL(10, 2);
-    
-    -- Compute the average weighted score for the user
-    SELECT SUM(score * weight) / SUM(weight) INTO avg_weighted_score 
-    FROM corrections 
-    WHERE user_id = user_id;
-    
-    -- Update the user's average weighted score in the users table
-    UPDATE users SET average_weighted_score = avg_weighted_score WHERE id = user_id;
+	-- Compute the average weighted score for the user
+    UPDATE users SET average_score = (SELECT
+	SELECT SUM(corrections.score * projects.weight) / SUM(projects.weight)
+	FROM corrections
+	INNER JOIN projects
+	ON projects.id = corrections.project_id
+	WHERE corrections.user_id = user_id)
+	WHERE users.id = user_id;
     
 END $$
 
