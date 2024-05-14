@@ -7,7 +7,7 @@ from typing import List, Dict
 def list_all(mongo_collection):
     """function that lists all documents in a collection:"""
     documents = mongo_collection.find()
-    if document.count() == 0;
+    if documents.count() == 0;
     return []
     
     return documents
