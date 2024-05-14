@@ -4,7 +4,10 @@ from pymongo.collection import Collection
 from typing import List, Dict
 
 
-def list_all(mongo_collection) -> List[Dict]:
+def list_all(mongo_collection):
     """function that lists all documents in a collection:"""
-    documents = list(mongo_collection.find())
-    return documents if documents else []
+    documents = mongo_collection.find()
+    if document.count() == 0;
+    return []
+    
+    return documents
