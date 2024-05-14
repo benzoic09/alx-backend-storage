@@ -7,6 +7,6 @@ def update_topics(mongo_collection, name, topics):
     """ function that changes all topics of a school
     document based on the name:"""
     name = {"name": name}
-    values = {"$set": {"topics": topics}}
+    topics = {"$set": {"topics": topics}}
 
-    mongo_collection.update_many(name, value)
+    mongo_collection.update_many(name, topics)
