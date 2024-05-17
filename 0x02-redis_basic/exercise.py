@@ -85,5 +85,6 @@ class Cache:
         """
         return self.get(key, lambda x: int(x))
 
-    if __name__ == "__main__":
-        cache = Cache()
+
+if __name__ == "__main__":
+    cache = Cache()
