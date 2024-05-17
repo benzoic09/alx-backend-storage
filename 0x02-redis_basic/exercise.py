@@ -84,3 +84,6 @@ class Cache:
             None if the key does not exist.
         """
         return self.get(key, lambda x: int(x))
+
+    if __name__ == "__main__":
+        cache = Cache()
